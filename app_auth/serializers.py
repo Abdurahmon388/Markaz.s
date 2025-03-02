@@ -1,7 +1,7 @@
 # app_auth/serializers.py
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User
+from .models import User, TokenModel
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -42,3 +42,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.is_active = True  # Foydalanuvchini avtomatik faollashtirish
         user.save()
         return user
+
+class TokenModelSerializer(serializers.ModelSerializer):
+    token = serializers.CharField(min_length=1, required=True) 
+    
+    class Meta:
+        model = TokenModel
+        fields = '__all__'
+

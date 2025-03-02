@@ -1,7 +1,7 @@
  # app_attendance/models.py
 
 from django.db import models
-from app_users.models import Student  
+from app_users.models import Student
 
 # Yo‘qlama darajasi
 class AttendanceLevel(models.Model):

@@ -24,11 +24,14 @@ schema_view = get_schema_view(
 urlpatterns = [
    # Django admin panel
    path('admin/', admin.site.urls),
-
+   
    # App routes
-   path('api/attendance/', include('app_attendance.urls')),  # Yo‘qlama (attendance) ilovasi
-   path('api/users/', include('app_users.urls')),  # User bilan bog‘liq marshrutlar
-   path('api/auth/', include('app_auth.urls')),  # Auth (ro‘yxatdan o‘tish, login) marshrutlari
+   path('api/courses/', include('app_courses.urls')),
+   path('api-auth/', include('rest_framework.urls')),  # DRF login paneli
+   path('api/attendance/', include('app_attendance.urls')),  # Yo‘qlama 
+   path('api/users/', include('app_users.urls')),  
+   path('users/', include('app_users.urls')),
+   path('api/auth/', include('app_auth.urls')),  # Auth (ro‘yxatdan o‘tish, login)
 
    # JWT Token olish va yangilash
    path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    is_worker = models.BooleanField(default=False)  # Ishchi (Staff)
+    is_worker = models.BooleanField(default=False)  # (Staff)
     is_student = models.BooleanField(default=False)  # Talaba
     is_admin = models.BooleanField(default=False)  # Admin
 
@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """Foydalanuvchi modeli"""
-    phone_regex = RegexValidator(regex=r'^[0-9]{9,14}$', message="Telefon raqami 9 dan 14 gacha bo‘lishi kerak.")
+    phone_regex = RegexValidator(regex=r'^[0-9]{9,14}$', message="Phone number must be entered in the format: '998900404001'. Up to 14 digits allowed.")
     phone = models.CharField(validators=[phone_regex], max_length=17, unique=True)
     full_name = models.CharField(max_length=50, blank=True, null=True)
 
@@ -52,3 +52,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.phone
+
+
+class TokenModel(models.Model):
+    date = models.DateField()
+    token = models.TextField()
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.date)

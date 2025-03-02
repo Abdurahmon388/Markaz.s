@@ -1,11 +1,15 @@
 from rest_framework.response import Response
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status, viewsets
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
-from .serializers import UserSerializer, RegisterSerializer, CustomTokenObtainPairSerializer
-from .models import User
+from .serializers import UserSerializer, RegisterSerializer, CustomTokenObtainPairSerializer, TokenModelSerializer
+from .models import User, TokenModel
 
+
+class TokenModelViewSet(viewsets.ModelViewSet):
+    queryset = TokenModel.objects.all()
+    serializer_class = TokenModelSerializer
 
 class RegisterView(CreateAPIView):
     """Foydalanuvchini ro‘yxatdan o‘tkazish"""
