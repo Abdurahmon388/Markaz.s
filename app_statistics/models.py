@@ -1,4 +1,4 @@
-
+# app_statistics/models.py
 from django.db import models
 from app_courses.models import Course
 
